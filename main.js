@@ -1,46 +1,42 @@
-// muda o nome a partir do seletor de classe
+//muda o nome a partir do seletor de classe
 var subtitulo = document.querySelector(".subtitulo");
+var titulo = document.querySelector(".titulo");
+titulo.textContent = "cu Nutrição";
 subtitulo.textContent = "Meus Pacientes";
-var nutricao = document.querySelector(".titulo");
-nutricao.textContent = "Aparecida Nutrições";
 
-//acessar a tag tr -menos o  paciente Paulo
+//acessar a tag tr - paciente Paulo
 var pacientes = document.querySelectorAll(".paciente");
-for(var i =0; i < pacientes.length; i++){
-var paciente = pacientes[i];
 
+for(var i = 0; i < pacientes.length; i++){
+    var paciente = pacientes[i];
 
-    // Seleciona o conteúdo do peso da tag
-var tdPeso = paciente.querySelector(".info-peso");
-var peso = tdPeso.textContent;
+    //seleciona o conteúdo peso da tag
+    var tdPeso = paciente.querySelector(".info-peso");
+    var peso = tdPeso.textContent;
 
-//Seleciona o conteúdo altura da tag
-var tdAltura = paciente.querySelector(".info-altura");
-var altura = tdAltura.textContent;
+    // seleciona o conteúdo altura da tag
+    var tdAltura = paciente.querySelector(".info-altura");
+    var altura = tdAltura.textContent;
 
-//calcula o imc
-var imc = peso/ (altura * altura);
-imc = imc.toFixed(2);
+    //calcula o imc
+    var imc = peso / (altura * altura);
 
-// variáveis com valor true
-var pesoValido = true;
-var alturaValida =  true;
+    //variáveis com valor true
+    var pesoValido = true;
+    var alturaValida = true; 
 
-if(pesoValido && alturaValida){
-    // acessa e altera o imc
-    var tdImc = paciente.querySelector(".info-imc");
-    tdImc.textContent = imc;
+    if(pesoValido && alturaValida){
+        // acessa e altera o imc
+        var tdImc = paciente.querySelector(".info-imc");
+        tdImc.textContent = imc;
     }
-
+    //define limites de peso e altura
     if(peso <= 0 || peso >= 1000){
         var pesoValido = false;
-        tdImc.textContent = "peso inválido";
-        }
-
-if(altura < 0 || altura > 3.00){
-    var alturaValida = false;
-    tdImc.textContent = "altura inválida";
-}
-
-
+        tdImc.textContent = "Peso Inválido!";
+    }
+    if(altura <= 0 || altura >= 3.00){
+        var alturaValida = false;
+        tdImc.textContent = "Altura Inválida";
+    }
 }
