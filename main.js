@@ -35,9 +35,19 @@ for(var i = 0; i < pacientes.length; i++){
         var pesoValido = false;
         tdImc.textContent = "Peso Inválido!";
         paciente.style.backgroundColor = "red";
+        paciente.classList.add("campo-invalido");
     }
     if(altura <= 0 || altura >= 3.00){
+        paciente.classList.add("campo-invalido");
         var alturaValida = false;
         tdImc.textContent = "Altura Inválida";
+        paciente.style.backgroundColor = "red";
     }
+}
+
+titulo.addEventListener('click', mostraMensagem)
+
+function mostraMensagem(){
+    alert("Este elemento foi clicado");
+
 }
