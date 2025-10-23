@@ -1,23 +1,25 @@
 var botaoAdicionar = document.querySelector("#adicionar-paciente");
 
-//executa os codigos ao clicar no botao
+// Executa os códigos ao clicar no botão
 botaoAdicionar.addEventListener('click', function(event){
     event.preventDefault();
 
     var formulario = document.querySelector("#form-adiciona");
 
-    var pacienteTr = criarTr(paciente);
-
+    // Primeiro, cria o paciente com os valores do formulário
     var paciente = buscaValoresFormulario(formulario);
 
-var tabela = document.querySelector("#tabela-pacientes");
-tabela.appendChild(pacienteTr);
-})
+    // Agora, cria a tr para adicionar na tabela
+    var pacienteTr = criarTr(paciente);
+
+    var tabela = document.querySelector("#tabela-pacientes");
+    tabela.appendChild(pacienteTr);
+
+    formulario.reset();
+});
 
 function buscaValoresFormulario(formulario){
-
-    //Captura os valores digitados
-
+    // Captura os valores digitados
     var paciente = {
         nome: formulario.nome.value,
         peso: formulario.peso.value,
@@ -25,35 +27,35 @@ function buscaValoresFormulario(formulario){
         gordura: formulario.gordura.value,
         imc: calcularIMC(formulario.peso.value, formulario.altura.value)
     }
-   return paciente;
- 
+    return paciente;
 }
 
 function criarTr(paciente){
-
     var pacienteTr = document.createElement("tr");
+    pacienteTr.classList.add("paciente");
 
-    //criar as tags td
+    // Criar as tags td
 
-    var nomeTd = document.createElement("td");
-    var pesoTd = document.createElement("td");
-    var alturaTd = document.createElement("td");
-    var gorduraTd = document.createElement("td");
-    var imcTd = document.createElement("td");
-    
-    nomeTd.textContent = paciente.nome;
-    pesoTd.textContent = paciente.peso;
-    alturaTd.textContent = paciente.altura;
-    gorduraTd.textContent = paciente.gordura;
-    imcTd.textContent = paciente.imc;
+    //criar tr
+    var pacienteTr = document. createElement("tr");
+    pacienteTr. classList.add("paciente");
 
-    //adiciona as tags na tela o usuario 
-
-    pacienteTr.appendChild(nomeTd);
-    pacienteTr.appendChild(pesoTd);
-    pacienteTr.appendChild(alturaTd);
-    pacienteTr.appendChild(gorduraTd);
-    pacienteTr.appendChild(imcTd);
+    // Adiciona as tags na tela do usuário
+    pacienteTr.appendChild(criarTd(paciente.nome, "info-nome"));
+    pacienteTr.appendChild(criarTd(paciente.peso, "info-peso"));
+    pacienteTr.appendChild(criarTd(paciente.altura, "info-altura"));
+    pacienteTr.appendChild(criarTd(paciente.gordura, "info-gordura"));
+    pacienteTr.appendChild(criarTd(paciente.imc, "info-imc"));
 
     return pacienteTr;   
+}
+
+function criarTd(dado, classe){
+   const td = document.createElement("td");
+
+   td.textContent = dado;
+   td.classList.add(classe);
+
+   return td;
+   
 }
